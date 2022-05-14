@@ -1,9 +1,6 @@
 import 'package:dump_days_agilathon/providers/home.dart';
 import 'package:dump_days_agilathon/providers/questionnaire.dart';
-import 'package:dump_days_agilathon/screens/home/page/home_screen.dart';
-import 'package:dump_days_agilathon/screens/questionnaire/page/questionnaire_screen.dart';
 import 'package:dump_days_agilathon/screens/splash/splash_screen.dart';
-import 'package:dump_days_agilathon/screens/thank_you/thank_you_screen.dart';
 import 'package:dump_days_agilathon/utils/constants.dart';
 import 'package:dump_days_agilathon/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -39,21 +36,6 @@ class MyApp extends StatelessWidget {
           name: MRoutes.root.name,
           path: MRoutes.root.path,
           builder: (context, state) => const SplashScreen(),
-        ),
-        GoRoute(
-          name: MRoutes.home.name,
-          path: MRoutes.home.path,
-          builder: (context, state) => const HomeScreen(),
-        ),
-        GoRoute(
-          name: MRoutes.thankYou.name,
-          path: MRoutes.thankYou.path,
-          builder: (context, state) => const ThankYouScreen(),
-        ),
-        GoRoute(
-          name: MRoutes.questionnaire.name,
-          path: MRoutes.questionnaire.path,
-          builder: (context, state) => const QuestionnaireScreen(),
         ),
       ],
     );
