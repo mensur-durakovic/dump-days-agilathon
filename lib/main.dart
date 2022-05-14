@@ -1,15 +1,30 @@
+import 'package:dump_days_agilathon/providers/home.dart';
+import 'package:dump_days_agilathon/providers/questionnaire.dart';
 import 'package:dump_days_agilathon/screens/home/page/home_screen.dart';
 import 'package:dump_days_agilathon/screens/questionnaire/page/questionnaire_screen.dart';
 import 'package:dump_days_agilathon/screens/splash/splash_screen.dart';
 import 'package:dump_days_agilathon/screens/thank_you/thank_you_screen.dart';
+import 'package:dump_days_agilathon/utils/constants.dart';
+import 'package:dump_days_agilathon/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (value) => runApp(const MyApp()),
+    (value) => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HomeState>(
+          create: (_) => HomeState(),
+        ),
+        ChangeNotifierProvider<QuestionnaireState>(
+          create: (_) => QuestionnaireState(),
+        ),
+      ],
+      child: const MyApp(),
+    )),
   );
 }
 
@@ -21,23 +36,23 @@ class MyApp extends StatelessWidget {
     final _router = GoRouter(
       routes: [
         GoRoute(
-          name: 'root',
-          path: '/',
+          name: MRoutes.root.name,
+          path: MRoutes.root.path,
           builder: (context, state) => const SplashScreen(),
         ),
         GoRoute(
-          name: 'home',
-          path: '/home',
+          name: MRoutes.home.name,
+          path: MRoutes.home.path,
           builder: (context, state) => const HomeScreen(),
         ),
         GoRoute(
-          name: 'thankYou',
-          path: '/thank-you',
+          name: MRoutes.thankYou.name,
+          path: MRoutes.thankYou.path,
           builder: (context, state) => const ThankYouScreen(),
         ),
         GoRoute(
-          name: 'questionnaire',
-          path: '/questionnaire',
+          name: MRoutes.questionnaire.name,
+          path: MRoutes.questionnaire.path,
           builder: (context, state) => const QuestionnaireScreen(),
         ),
       ],
@@ -47,7 +62,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
-      title: 'Nicotine dependency study',
+      title: kAppTitle,
     );
   }
 }

@@ -3,34 +3,32 @@ import 'package:dump_days_agilathon/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class DateInput extends StatelessWidget {
-  final String labelText;
   final String initialValue;
-  final String initialText;
+  final String hintText;
   final Function(String) onChange;
 
   const DateInput({
     Key? key,
-    required this.initialValue,
-    required this.labelText,
+    this.initialValue = '',
+    required this.hintText,
     required this.onChange,
-    this.initialText = "",
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DateTimePicker(
-      decoration: const InputDecoration(
-        contentPadding: EdgeInsets.all(2.0),
-        border: OutlineInputBorder(
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.all(2.0),
+        border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: MColors.mainColor, width: 2.0),
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
-        hintText: "Time",
+        hintText: hintText,
         hoverColor: MColors.mainColor,
-        prefixIcon: Icon(
+        prefixIcon: const Icon(
           Icons.date_range_rounded,
           color: MColors.mainColor,
         ),
@@ -41,7 +39,6 @@ class DateInput extends StatelessWidget {
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
       icon: const Icon(Icons.event),
-      dateLabelText: labelText,
       //locale: Locale('pt', 'BR'),
       onChanged: (val) => onChange(val),
       validator: (val) {

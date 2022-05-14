@@ -1,4 +1,5 @@
 import 'package:dump_days_agilathon/theme/colors.dart';
+import 'package:dump_days_agilathon/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -18,7 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           centerTitle: true,
           iconTheme: const IconThemeData(color: MColors.darkGray),
           title: Image.asset(
-            'assets/agilathon_logo.png',
+            kAgilathonLogoPath,
             height: 25,
           ),
         ),
